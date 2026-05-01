@@ -67,20 +67,24 @@ const AIScanner = () => {
       reader.onload = (e) => {
         setUploadedImage(e.target?.result as string);
         setScanResult(null); // Reset result on new upload
+        
+        // Auto-trigger scan immediately after image is selected/captured
+        performScan(file);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const performScan = async () => {
-    if (!selectedFile) return;
+  const performScan = async (fileToScan?: File) => {
+    const targetFile = fileToScan || selectedFile;
+    if (!targetFile) return;
 
     setIsScanning(true);
     setScanResult(null);
 
     try {
       const formData = new FormData();
-      formData.append("image", selectedFile);
+      formData.append("image", targetFile);
 
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
       const res = await fetch(`${apiUrl}/predict`, {
@@ -259,14 +263,7 @@ const AIScanner = () => {
                                 variant="outline"
                                 className="flex-1 h-12 rounded-xl border-dashed border-2"
                               >
-                                Change Photo
-                              </Button>
-                              <Button
-                                onClick={performScan}
-                                className="flex-1 bg-gradient-herbal text-white shadow-glow hover:shadow-herbal h-12 rounded-xl"
-                              >
-                                <Scan className="w-5 h-5 mr-2" />
-                                Identify
+                                Cancel
                               </Button>
                             </div>
                           )
