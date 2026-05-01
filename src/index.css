@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ECHO Herbal Garden Design System - Nature & AYUSH Inspired */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Premium Herbal & Nature Inspired */
+    --background: 140 30% 98%;
+    --foreground: 145 40% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 145 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 145 40% 10%;
+
+    /* Primary - Deep Emerald Forest Green */
+    --primary: 154 55% 28%;
+    --primary-foreground: 120 20% 99%;
+    --primary-glow: 140 45% 45%;
+
+    /* Secondary - Soft Sage Mist */
+    --secondary: 136 30% 90%;
+    --secondary-foreground: 154 55% 15%;
+
+    /* Muted - Soft Eucalyptus */
+    --muted: 150 20% 96%;
+    --muted-foreground: 145 15% 40%;
+
+    /* Accent - Vibrant Turmeric Gold */
+    --accent: 42 90% 50%;
+    --accent-foreground: 145 50% 10%;
+
+    /* Herbal Therapy Colors */
+    --ayush-vata: 210 60% 65%;
+    --ayush-pitta: 15 85% 65%;
+    --ayush-kapha: 150 45% 40%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 120 20% 98%;
+
+    --border: 140 15% 88%;
+    --input: 140 15% 92%;
+    --ring: 154 55% 28%;
+
+    /* Gradients for premium herbal effects */
+    --gradient-herbal: linear-gradient(135deg, hsl(var(--primary)), hsl(150 60% 35%));
+    --gradient-garden: linear-gradient(180deg, #F8FAF9 0%, #EFF5F2 100%);
+    --gradient-leaf: linear-gradient(45deg, hsl(var(--primary-glow)), hsl(145 40% 60%));
+    --gradient-ayush: linear-gradient(120deg, hsl(var(--ayush-vata)), hsl(var(--ayush-pitta)), hsl(var(--ayush-kapha)));
+    --glass-bg: rgba(255, 255, 255, 0.7);
+
+    /* Shadows with depth */
+    --shadow-herbal: 0 10px 40px -10px hsl(var(--primary) / 0.15);
+    --shadow-glow: 0 0 30px hsl(var(--primary) / 0.2);
+    --shadow-leaf: 0 10px 30px -4px hsl(var(--accent) / 0.25);
+    --shadow-soft: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+    --shadow-deep: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --radius: 1rem;
+
+    /* Sidebar Updates */
+    --sidebar-background: 140 25% 98%;
+    --sidebar-foreground: 145 40% 15%;
+    --sidebar-primary: 154 55% 28%;
+    --sidebar-primary-foreground: 120 20% 99%;
+    --sidebar-accent: 136 30% 92%;
+    --sidebar-accent-foreground: 154 55% 15%;
+    --sidebar-border: 140 15% 90%;
+    --sidebar-ring: 154 55% 28%;
+  }
+
+  .dark {
+    --background: 154 40% 6%;
+    --foreground: 140 20% 90%;
+
+    --card: 154 30% 8%;
+    --card-foreground: 140 20% 90%;
+
+    --popover: 154 30% 8%;
+    --popover-foreground: 140 20% 90%;
+
+    --primary: 154 50% 55%;
+    --primary-foreground: 154 40% 5%;
+    --primary-glow: 140 45% 65%;
+
+    --secondary: 154 30% 12%;
+    --secondary-foreground: 140 20% 80%;
+
+    --muted: 154 20% 12%;
+    --muted-foreground: 140 15% 60%;
+
+    --accent: 42 90% 60%;
+    --accent-foreground: 154 40% 5%;
+
+    --ayush-vata: 210 70% 75%;
+    --ayush-pitta: 15 90% 70%;
+    --ayush-kapha: 150 60% 60%;
+
+    --destructive: 0 75% 65%;
+    --destructive-foreground: 140 30% 8%;
+
+    --border: 154 20% 15%;
+    --input: 154 20% 15%;
+    --ring: 154 50% 55%;
+
+    --gradient-herbal: linear-gradient(135deg, hsl(154 50% 20%), hsl(154 50% 40%));
+    --gradient-garden: linear-gradient(180deg, #0A1410 0%, #0F1F18 100%);
+    --gradient-leaf: linear-gradient(45deg, hsl(154 50% 40%), hsl(var(--accent)));
+    --gradient-ayush: linear-gradient(120deg, hsl(var(--ayush-vata)), hsl(var(--ayush-pitta)), hsl(var(--ayush-kapha)));
+    --glass-bg: rgba(10, 20, 16, 0.7);
+
+    --shadow-herbal: 0 10px 40px -10px hsl(var(--primary) / 0.25);
+    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.2);
+    --shadow-leaf: 0 8px 32px -4px hsl(var(--accent) / 0.2);
+    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --shadow-deep: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+
+    --sidebar-background: 154 30% 7%;
+    --sidebar-foreground: 140 20% 85%;
+    --sidebar-primary: 154 50% 55%;
+    --sidebar-primary-foreground: 154 40% 5%;
+    --sidebar-accent: 154 20% 15%;
+    --sidebar-accent-foreground: 140 20% 90%;
+    --sidebar-border: 154 20% 15%;
+    --sidebar-ring: 154 50% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .glass-panel {
+    @apply bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-soft;
+  }
+  
+  .glass-card {
+    @apply bg-white/80 dark:bg-black/70 backdrop-blur-sm border border-white/40 dark:border-white/10 shadow-soft hover:shadow-herbal transition-all duration-300;
+  }
+  
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  /* Smooth transitions for all interactive elements */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-spring {
+    transition: var(--transition-spring);
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .clip-leaf {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%);
+  }
+  .clip-leaf-reverse {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%);
+  }
+}
+
+/* Botanical patterns and animations */
+.leaf-float {
+  animation: leafFloat 8s ease-in-out infinite;
+}
+
+.herbal-glow {
+  box-shadow: var(--shadow-herbal);
+}
+
+.garden-gradient {
+  background: var(--gradient-garden);
+}
+
+.herbal-gradient {
+  background: var(--gradient-herbal);
+}
+
+.leaf-gradient {
+  background: var(--gradient-leaf);
+}
+
+/* Keyframes */
+@keyframes leafFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(4deg);
+  }
+}
+
+/* Decorative plant background patterns */
+.plant-bg-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.plant-bg-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.02;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 Q30 30 20 50 Q10 70 20 90 Q30 85 50 90 Q70 85 80 90 Q90 70 80 50 Q70 30 50 10 Z' fill='%2315803d'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 5 Q25 20 15 35 Q5 50 15 65 Q25 60 40 65 Q55 60 65 65 Q75 50 65 35 Q55 20 40 5 Z' fill='%2315803d'/%3E%3C/svg%3E");
+  background-size: 200px 200px, 150px 150px;
+  background-position: 0 0, 100px 100px;
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.greenery-bg {
+  position: relative;
+  background: linear-gradient(135deg, 
+    hsl(var(--background)) 0%,
+    hsl(var(--secondary) / 0.5) 50%,
+    hsl(var(--background)) 100%
+  );
+}
+
+.greenery-bg::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -50px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, hsl(var(--primary) / 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.greenery-bg::before {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: -150px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, hsl(var(--primary-glow) / 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Floating leaf decorative elements */
+.floating-leaf {
+  position: absolute;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-leaf-1 {
+  top: 10%;
+  left: 5%;
+  width: 100px;
+  height: 100px;
+  animation: leafFloat 8s ease-in-out infinite;
+}
+
+.floating-leaf-2 {
+  top: 30%;
+  right: 8%;
+  width: 80px;
+  height: 80px;
+  animation: leafFloat 10s ease-in-out infinite 2s;
+}
+
+.floating-leaf-3 {
+  bottom: 20%;
+  left: 10%;
+  width: 120px;
+  height: 120px;
+  animation: leafFloat 12s ease-in-out infinite 4s;
+}
+
+.floating-leaf-4 {
+  bottom: 15%;
+  right: 5%;
+  width: 90px;
+  height: 90px;
+  animation: leafFloat 9s ease-in-out infinite 1s;
+}
+
+/* Section content wrapper */
+.section-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}

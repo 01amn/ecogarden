@@ -1,0 +1,23 @@
+{
+    "plantName": "Aloe Vera",
+    "sanskrit": "घृतकुमारी (Aloe barbadensis)",
+    "scientificName": "Aloe barbadensis miller",
+    "properties": [
+        "Cooling",
+        "Moisturizing",
+        "Anti-inflammatory",
+        "Healing"
+    ],
+    "dosha": "pitta",
+    "benefits": [
+        "Soothes sunburns",
+        "Promotes digestion",
+        "Improves skin health",
+        "Reduces dental plaque"
+    ],
+    "therapyRecommendations": [
+        "Apply fresh, pure Aloe Vera gel to soothe irritated skin",
+        "Drink 2 tablespoons of Aloe Vera juice daily for digestion",
+        "Use Aloe Vera as a natural hair conditioner"
+    ]
+}

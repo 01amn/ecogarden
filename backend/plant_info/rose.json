@@ -1,0 +1,23 @@
+{
+    "plantName": "Rose",
+    "sanskrit": "गुलाब (Rosa)",
+    "scientificName": "Rosa",
+    "properties": [
+        "Cooling",
+        "Soothing",
+        "Antioxidant",
+        "Hydrating"
+    ],
+    "dosha": "pitta",
+    "benefits": [
+        "Improves skin health",
+        "Reduces stress",
+        "Hydrates body",
+        "Supports digestion"
+    ],
+    "therapyRecommendations": [
+        "Use rose water for skin",
+        "Drink rose tea",
+        "Apply rose oil for relaxation"
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "plantName": "Papaya",
+    "sanskrit": "पपीता (Carica papaya)",
+    "scientificName": "Carica papaya",
+    "properties": [
+        "Digestive",
+        "Cooling",
+        "Detoxifying",
+        "Antioxidant"
+    ],
+    "dosha": "pitta",
+    "benefits": [
+        "Improves digestion",
+        "Enhances skin health",
+        "Boosts immunity",
+        "Supports weight loss"
+    ],
+    "therapyRecommendations": [
+        "Eat ripe papaya daily",
+        "Apply papaya pulp on skin",
+        "Drink papaya smoothie for digestion"
+    ]
+}

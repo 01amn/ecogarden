@@ -1,0 +1,23 @@
+{
+    "plantName": "Turmeric",
+    "sanskrit": "हरिद्रा (Curcuma longa)",
+    "scientificName": "Curcuma longa",
+    "properties": [
+        "Anti-inflammatory",
+        "Antioxidant",
+        "Healing",
+        "Antibacterial"
+    ],
+    "dosha": "kapha",
+    "benefits": [
+        "Boosts immunity",
+        "Improves skin health",
+        "Reduces inflammation",
+        "Supports joint health"
+    ],
+    "therapyRecommendations": [
+        "Drink turmeric milk daily",
+        "Apply turmeric paste on wounds",
+        "Use turmeric in cooking regularly"
+    ]
+}

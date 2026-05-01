@@ -1,0 +1,23 @@
+{
+    "plantName": "Curry Plant",
+    "sanskrit": "करी पत्ता (Murraya koenigii)",
+    "scientificName": "Murraya koenigii",
+    "properties": [
+        "Antioxidant",
+        "Digestive",
+        "Anti-diabetic",
+        "Anti-inflammatory"
+    ],
+    "dosha": "kapha",
+    "benefits": [
+        "Improves digestion",
+        "Controls blood sugar",
+        "Promotes hair growth",
+        "Supports liver health"
+    ],
+    "therapyRecommendations": [
+        "Consume fresh curry leaves daily",
+        "Use curry leaf paste for hair care",
+        "Prepare curry leaf tea for digestion"
+    ]
+}

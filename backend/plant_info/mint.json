@@ -1,0 +1,23 @@
+{
+    "plantName": "Mint",
+    "sanskrit": "पुदीना (Mentha)",
+    "scientificName": "Mentha spicata",
+    "properties": [
+        "Cooling",
+        "Digestive",
+        "Carminative",
+        "Antispasmodic"
+    ],
+    "dosha": "pitta",
+    "benefits": [
+        "Aids in digestion",
+        "Relieves irritable bowel syndrome",
+        "Improves cold symptoms",
+        "Freshens breath"
+    ],
+    "therapyRecommendations": [
+        "Drink Mint tea to soothe an upset stomach",
+        "Inhale Mint essential oil vapor for congestion relief",
+        "Chew fresh Mint leaves for oral hygiene"
+    ]
+}

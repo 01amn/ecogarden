@@ -1,0 +1,23 @@
+{
+    "plantName": "Mango",
+    "sanskrit": "आम्र (Mangifera indica)",
+    "scientificName": "Mangifera indica",
+    "properties": [
+        "Nourishing",
+        "Cooling",
+        "Energizing",
+        "Antioxidant"
+    ],
+    "dosha": "pitta",
+    "benefits": [
+        "Boosts immunity",
+        "Improves digestion",
+        "Enhances skin glow",
+        "Provides energy"
+    ],
+    "therapyRecommendations": [
+        "Consume ripe mangoes in moderation",
+        "Use mango pulp for face packs",
+        "Drink mango juice for energy"
+    ]
+}

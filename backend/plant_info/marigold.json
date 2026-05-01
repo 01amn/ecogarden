@@ -1,0 +1,23 @@
+{
+    "plantName": "Marigold",
+    "sanskrit": "गेंदा (Tagetes erecta)",
+    "scientificName": "Tagetes erecta",
+    "properties": [
+        "Antiseptic",
+        "Anti-inflammatory",
+        "Healing",
+        "Antibacterial"
+    ],
+    "dosha": "pitta",
+    "benefits": [
+        "Heals wounds",
+        "Improves skin health",
+        "Reduces inflammation",
+        "Prevents infections"
+    ],
+    "therapyRecommendations": [
+        "Apply marigold paste on wounds",
+        "Use marigold oil for skin care",
+        "Prepare herbal infusion for healing"
+    ]
+}

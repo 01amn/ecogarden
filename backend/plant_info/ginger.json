@@ -1,0 +1,23 @@
+{
+    "plantName": "Ginger",
+    "sanskrit": "आर्द्रक (Zingiber officinale)",
+    "scientificName": "Zingiber officinale",
+    "properties": [
+        "Heating",
+        "Digestive",
+        "Anti-inflammatory",
+        "Antioxidant"
+    ],
+    "dosha": "kapha",
+    "benefits": [
+        "Relieves nausea",
+        "Improves digestion",
+        "Reduces inflammation",
+        "Boosts immunity"
+    ],
+    "therapyRecommendations": [
+        "Drink ginger tea for cold and cough",
+        "Use fresh ginger in meals",
+        "Consume ginger with honey for sore throat"
+    ]
+}
