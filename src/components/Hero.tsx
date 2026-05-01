@@ -288,63 +288,11 @@ const Hero = () => {
   const [identifiedPlant, setIdentifiedPlant] = useState<Plant | null>(null);
   const [isIdentifying, setIsIdentifying] = useState(false);
   const [showResultDialog, setShowResultDialog] = useState(false);
-  const [showCameraDialog, setShowCameraDialog] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const streamRef = useRef<MediaStream | null>(null);
 
-  useEffect(() => {
-    if (showCameraDialog) {
-      startCamera();
-    } else {
-      stopCamera();
-    }
-    return () => stopCamera();
-  }, [showCameraDialog]);
-
-  const startCamera = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" }
-      });
-      streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-      }
-    } catch (err) {
-      console.error("Error accessing camera:", err);
-      fileInputRef.current?.click();
-      setShowCameraDialog(false);
-    }
-  };
-
-  const stopCamera = () => {
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach(track => track.stop());
-      streamRef.current = null;
-    }
-  };
-
-  const captureFrame = () => {
-    if (videoRef.current) {
-      const canvas = document.createElement("canvas");
-      canvas.width = videoRef.current.videoWidth;
-      canvas.height = videoRef.current.videoHeight;
-      const ctx = canvas.getContext("2d");
-      if (ctx) {
-        ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-        const imageData = canvas.toDataURL("image/jpeg");
-        setUploadedImage(imageData);
-        canvas.toBlob((blob) => {
-          if (blob) {
-            const file = new File([blob], "camera_capture.jpg", { type: "image/jpeg" });
-            setShowCameraDialog(false);
-            identifyPlant(file, imageData);
-          }
-        }, "image/jpeg", 0.9);
-      }
-    }
+  const handleImageButtonClick = () => {
+    fileInputRef.current?.click();
   };
 
   const handleSearch = (e: React.FormEvent) => {
@@ -446,9 +394,6 @@ const Hero = () => {
     }
   };
 
-  const handleImageButtonClick = () => {
-    setShowCameraDialog(true);
-  };
 
   const handleExploreTherapies = () => {
     const element = document.querySelector('#therapies');
@@ -767,37 +712,6 @@ const Hero = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Live Camera Dialog */}
-      <Dialog open={showCameraDialog} onOpenChange={(open) => setShowCameraDialog(open)}>
-        <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-black border-none shadow-deep rounded-2xl">
-          <div className="relative bg-black w-full aspect-video md:aspect-[4/3] flex items-center justify-center">
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              className="w-full h-full object-cover"
-            />
-
-            {/* Capture Overlays */}
-            <div className="absolute inset-x-0 top-0 p-4 bg-gradient-to-b from-black/60 to-transparent flex justify-between items-center text-white z-10">
-              <span className="font-medium text-sm drop-shadow-md">Scan Real-Life Plant</span>
-            </div>
-
-            {/* Target Reticle */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-              <div className="w-48 h-48 border-2 border-white/50 rounded-2xl"></div>
-            </div>
-
-            <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent flex justify-center items-center z-10">
-              <Button
-                onClick={captureFrame}
-                className="w-16 h-16 rounded-full bg-white hover:bg-white/90 border-4 border-primary/50 shadow-glow flex items-center justify-center p-0 transition-transform active:scale-95 group"
-              >
-                <div className="w-14 h-14 rounded-full border-2 border-dashed border-primary animate-[spin_10s_linear_infinite] group-hover:border-solid transition-all" />
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
       </Dialog>
     </div>
   );
