@@ -712,7 +712,6 @@ const Hero = () => {
         </DialogContent>
       </Dialog>
 
-      </Dialog>
     </div>
   );
 };
