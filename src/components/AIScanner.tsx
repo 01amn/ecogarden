@@ -82,7 +82,8 @@ const AIScanner = () => {
       const formData = new FormData();
       formData.append("image", selectedFile);
 
-      const res = await fetch("http://localhost:8000/predict", {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}/predict`, {
         method: "POST",
         body: formData,
       });
