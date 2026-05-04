@@ -49,21 +49,29 @@ def format_name_for_regex(name):
     return ''.join(e for e in name if e.isalnum()).lower()
 
 def match_plant_in_db(scientific_name, common_names):
+    if not scientific_name:
+        return None
+        
     sn_clean = scientific_name.lower().strip()
+    logging.info(f"Matching scientific name: '{sn_clean}' and common names: {common_names}")
     
-    # Check exact scientific name match
+    # Check exact scientific name match (best)
     for key, val in SCIENTIFIC_NAME_MAP.items():
-        if key in sn_clean or sn_clean in key:
+        # Match if key is part of scientific name or vice versa (e.g., 'hibiscus' matches 'hibiscus rosa-sinensis')
+        if key == sn_clean or (len(key) > 3 and key in sn_clean) or (len(sn_clean) > 3 and sn_clean in key):
             if val in AVAILABLE_JSON_PLANTS:
+                logging.info(f"Match found via scientific name: {val}")
                 return val
 
-    # Check common names
+    # Check common names (fallback)
     for common in common_names:
         c_clean = format_name_for_regex(common)
         for json_name in AVAILABLE_JSON_PLANTS:
-            if json_name in c_clean:
+            if json_name in c_clean or c_clean in json_name:
+                logging.info(f"Match found via common name '{common}': {json_name}")
                 return json_name
                 
+    logging.info("No local match found in database.")
     return None
 
 def predict_plant(image_bytes, image_bytes_optional=None):

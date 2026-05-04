@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,7 +36,7 @@ const therapies: Therapy[] = [
   {
     id: "1",
     title: "Tulsi Tea for Respiratory Health",
-    condition: "Cough & Cold",
+    condition: "Respiratory",
     plant: "Tulsi (Holy Basil)",
     dosha: "tridoshic",
     preparation: "Boil 10-12 fresh tulsi leaves in 1 cup water for 5 minutes. Add honey and ginger if desired.",
@@ -50,7 +50,7 @@ const therapies: Therapy[] = [
   {
     id: "2",
     title: "Ashwagandha Stress Relief",
-    condition: "Stress & Anxiety",
+    condition: "Mental Health",
     plant: "Ashwagandha",
     dosha: "vata",
     preparation: "Mix 1 tsp ashwagandha powder with warm milk and honey before bedtime.",
@@ -64,7 +64,7 @@ const therapies: Therapy[] = [
   {
     id: "3",
     title: "Turmeric Golden Milk",
-    condition: "Joint Pain & Inflammation",
+    condition: "Joint Health",
     plant: "Turmeric (Haldi)",
     dosha: "kapha",
     preparation: "Heat 1 cup milk with 1 tsp turmeric powder, pinch of black pepper, and honey.",
@@ -74,6 +74,62 @@ const therapies: Therapy[] = [
     precautions: ["May increase bleeding risk", "Avoid with gallstones"],
     difficulty: "beginner",
     effectiveness: 85
+  },
+  {
+    id: "4",
+    title: "Ginger Digestive Tonic",
+    condition: "Digestive",
+    plant: "Ginger",
+    dosha: "vata",
+    preparation: "Grate 1 inch fresh ginger, squeeze juice, and mix with 1 tsp honey and a pinch of rock salt.",
+    dosage: "1 tsp before meals",
+    duration: "As needed",
+    benefits: ["Improves digestion", "Reduces bloating", "Eases nausea"],
+    precautions: ["Avoid with severe gastritis", "Limit if you have high pitta"],
+    difficulty: "beginner",
+    effectiveness: 90
+  },
+  {
+    id: "5",
+    title: "Aloe Vera Skin Healing Gel",
+    condition: "Skin Care",
+    plant: "Aloe Vera",
+    dosha: "pitta",
+    preparation: "Extract fresh gel from an aloe leaf. Apply directly to affected skin area.",
+    dosage: "Apply twice daily",
+    duration: "Until healed",
+    benefits: ["Cools skin", "Heals burns", "Reduces acne inflammation"],
+    precautions: ["Test on small patch first", "Do not ingest without guidance"],
+    difficulty: "beginner",
+    effectiveness: 94
+  },
+  {
+    id: "6",
+    title: "Neem Blood Purifier",
+    condition: "Immunity",
+    plant: "Neem",
+    dosha: "pitta",
+    preparation: "Chew 4-5 fresh tender neem leaves on an empty stomach in the morning.",
+    dosage: "4-5 leaves daily",
+    duration: "2 weeks",
+    benefits: ["Purifies blood", "Clears skin", "Boosts immunity", "Antifungal"],
+    precautions: ["Not for long-term daily use", "Avoid if trying to conceive"],
+    difficulty: "intermediate",
+    effectiveness: 87
+  },
+  {
+    id: "7",
+    title: "Mint Cooling Infusion",
+    condition: "Digestive",
+    plant: "Mint",
+    dosha: "pitta",
+    preparation: "Crush a handful of mint leaves. Steep in warm water for 10 minutes.",
+    dosage: "1 cup after lunch",
+    duration: "Daily in summer",
+    benefits: ["Cooling effect", "Eases indigestion", "Refreshes breath"],
+    precautions: ["Avoid with GERD/Acid Reflux"],
+    difficulty: "beginner",
+    effectiveness: 82
   }
 ];
 
@@ -89,10 +145,40 @@ const conditions = [
 const TherapyRecommendations = () => {
   const [selectedCondition, setSelectedCondition] = useState("respiratory");
   const [selectedDosha, setSelectedDosha] = useState<string>("all");
+  const [plantFilter, setPlantFilter] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleFilterUpdate = () => {
+      const storedPlant = sessionStorage.getItem('therapyPlantFilter');
+      if (storedPlant) {
+        setPlantFilter(storedPlant);
+        // Find if this plant belongs to a specific condition category
+        const therapy = therapies.find(t => t.plant.toLowerCase().includes(storedPlant.toLowerCase()));
+        if (therapy) {
+            // We don't have a direct mapping of plant to condition category ID easily, 
+            // but we could just clear the condition filter or set it if we had a map.
+            // For now, let's just clear condition if we are filtering by plant.
+            setSelectedCondition("all");
+        }
+        sessionStorage.removeItem('therapyPlantFilter');
+      }
+    };
+
+    handleFilterUpdate();
+    window.addEventListener('therapyFilterUpdate', handleFilterUpdate);
+    return () => window.removeEventListener('therapyFilterUpdate', handleFilterUpdate);
+  }, []);
 
   const filteredTherapies = therapies.filter(therapy => {
+    const matchesCondition = selectedCondition === "all" || 
+                             conditions.find(c => c.id === selectedCondition)?.name === therapy.condition ||
+                             therapy.condition.toLowerCase().includes(selectedCondition.toLowerCase());
+                             
     const matchesDosha = selectedDosha === "all" || therapy.dosha === selectedDosha || therapy.dosha === "tridoshic";
-    return matchesDosha;
+    
+    const matchesPlant = !plantFilter || therapy.plant.toLowerCase().includes(plantFilter.toLowerCase());
+    
+    return (selectedCondition === "all" || matchesCondition) && matchesDosha && matchesPlant;
   });
 
   const getDoshaIcon = (dosha: string) => {
@@ -153,7 +239,10 @@ const TherapyRecommendations = () => {
                   {conditions.map((condition) => (
                     <button
                       key={condition.id}
-                      onClick={() => setSelectedCondition(condition.id)}
+                      onClick={() => {
+                        setSelectedCondition(condition.id);
+                        setPlantFilter(null); // Clear plant filter when category is selected
+                      }}
                       className={`flex items-center p-3 rounded-xl transition-all duration-300 text-left ${selectedCondition === condition.id
                           ? "bg-white shadow-herbal border-l-4 border-primary translate-x-1"
                           : "bg-transparent hover:bg-white/50 border-transparent text-muted-foreground hover:text-foreground"
@@ -165,6 +254,21 @@ const TherapyRecommendations = () => {
                       <span className="font-medium text-sm">{condition.name}</span>
                     </button>
                   ))}
+                  <button
+                    onClick={() => {
+                        setSelectedCondition("all");
+                        setPlantFilter(null);
+                    }}
+                    className={`flex items-center p-3 rounded-xl transition-all duration-300 text-left ${selectedCondition === "all" && !plantFilter
+                        ? "bg-white shadow-herbal border-l-4 border-primary translate-x-1"
+                        : "bg-transparent hover:bg-white/50 border-transparent text-muted-foreground hover:text-foreground"
+                      }`}
+                  >
+                    <div className="p-2 rounded-lg mr-3 bg-gray-500/10 text-gray-500">
+                      <Star className="w-5 h-5" />
+                    </div>
+                    <span className="font-medium text-sm">All Therapies</span>
+                  </button>
                 </div>
               </div>
 
@@ -196,8 +300,30 @@ const TherapyRecommendations = () => {
 
             {/* Main Content Area */}
             <div className="lg:col-span-3">
+              {plantFilter && (
+                <div className="mb-6 flex items-center justify-between bg-primary/10 p-4 rounded-2xl border border-primary/20 animate-fade-up">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-primary p-2 rounded-lg text-white">
+                        <Leaf className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <p className="text-sm font-bold text-primary">Therapies for {plantFilter}</p>
+                        <p className="text-xs text-muted-foreground">Showing specific recommendations for this plant</p>
+                    </div>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={() => setPlantFilter(null)}
+                    className="text-primary hover:bg-primary/10"
+                  >
+                    Clear Filter
+                  </Button>
+                </div>
+              )}
               <div className="grid md:grid-cols-1 gap-6">
-                {filteredTherapies.map((therapy, index) => (
+                {filteredTherapies.length > 0 ? (
+                    filteredTherapies.map((therapy, index) => (
                   <Card
                     key={therapy.id}
                     className="overflow-hidden border-none shadow-soft hover:shadow-deep transition-all duration-300 animate-fade-up bg-white/60 dark:bg-black/40 backdrop-blur-md rounded-3xl"
@@ -309,7 +435,30 @@ const TherapyRecommendations = () => {
                       </div>
                     </div>
                   </Card>
-                ))}
+                ))
+                ) : (
+                    <div className="text-center py-20 bg-white/40 backdrop-blur-md rounded-3xl animate-fade-up">
+                        <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Shield className="w-8 h-8 text-muted-foreground" />
+                        </div>
+                        <h4 className="text-xl font-bold mb-2">No matching therapies</h4>
+                        <p className="text-muted-foreground max-w-xs mx-auto">
+                            We couldn't find specific therapies for this plant or condition. 
+                            Try clearing filters or checking other categories.
+                        </p>
+                        <Button 
+                            variant="link" 
+                            className="mt-4 text-primary"
+                            onClick={() => {
+                                setSelectedCondition("all");
+                                setSelectedDosha("all");
+                                setPlantFilter(null);
+                            }}
+                        >
+                            Reset All Filters
+                        </Button>
+                    </div>
+                )}
               </div>
             </div>
           </div>

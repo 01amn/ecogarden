@@ -1,0 +1,284 @@
+{
+    "query": {
+        "project": "all",
+        "images": [
+            "f5f0f8a48280f895363fdcb2e309b7a0"
+        ],
+        "organs": [
+            "auto"
+        ],
+        "includeRelatedImages": false,
+        "noReject": false,
+        "type": null
+    },
+    "predictedOrgans": [
+        {
+            "image": "f5f0f8a48280f895363fdcb2e309b7a0",
+            "filename": "image.jpg",
+            "organ": "habit",
+            "score": 0.54883
+        }
+    ],
+    "language": "en",
+    "preferedReferential": "k-world-flora",
+    "bestMatch": "Ocimum tenuiflorum L.",
+    "results": [
+        {
+            "score": 0.96425,
+            "species": {
+                "scientificNameWithoutAuthor": "Ocimum tenuiflorum",
+                "scientificNameAuthorship": "L.",
+                "genus": {
+                    "scientificNameWithoutAuthor": "Ocimum",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Ocimum"
+                },
+                "family": {
+                    "scientificNameWithoutAuthor": "Lamiaceae",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Lamiaceae"
+                },
+                "commonNames": [
+                    "Tulasi",
+                    "Tulsi",
+                    "तुलसी"
+                ],
+                "scientificName": "Ocimum tenuiflorum L."
+            },
+            "gbif": {
+                "id": "2927100"
+            },
+            "powo": {
+                "id": "453130-1"
+            }
+        },
+        {
+            "score": 0.01044,
+            "species": {
+                "scientificNameWithoutAuthor": "Ocimum gratissimum",
+                "scientificNameAuthorship": "L.",
+                "genus": {
+                    "scientificNameWithoutAuthor": "Ocimum",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Ocimum"
+                },
+                "family": {
+                    "scientificNameWithoutAuthor": "Lamiaceae",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Lamiaceae"
+                },
+                "commonNames": [
+                    "African basil",
+                    "Scent leaf",
+                    "East Indian basil"
+                ],
+                "scientificName": "Ocimum gratissimum L."
+            },
+            "gbif": {
+                "id": "2927094"
+            },
+            "powo": {
+                "id": "452969-1"
+            }
+        },
+        {
+            "score": 0.0033,
+            "species": {
+                "scientificNameWithoutAuthor": "Salvia plebeia",
+                "scientificNameAuthorship": "R.Br.",
+                "genus": {
+                    "scientificNameWithoutAuthor": "Salvia",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Salvia"
+                },
+                "family": {
+                    "scientificNameWithoutAuthor": "Lamiaceae",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Lamiaceae"
+                },
+                "commonNames": [
+                    "Australian sage",
+                    "Plebeian sage",
+                    "Common sage"
+                ],
+                "scientificName": "Salvia plebeia R.Br."
+            },
+            "gbif": {
+                "id": "3891879"
+            },
+            "powo": {
+                "id": "456965-1"
+            }
+        },
+        {
+            "score": 0.00235,
+            "species": {
+                "scientificNameWithoutAuthor": "Teucrium scorodonia",
+                "scientificNameAuthorship": "L.",
+                "genus": {
+                    "scientificNameWithoutAuthor": "Teucrium",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Teucrium"
+                },
+                "family": {
+                    "scientificNameWithoutAuthor": "Lamiaceae",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Lamiaceae"
+                },
+                "commonNames": [
+                    "Wood Sage",
+                    "Wood germander",
+                    "Woodland germander"
+                ],
+                "scientificName": "Teucrium scorodonia L."
+            },
+            "gbif": {
+                "id": "2926901"
+            },
+            "powo": {
+                "id": "460717-1"
+            }
+        },
+        {
+            "score": 0.00228,
+            "species": {
+                "scientificNameWithoutAuthor": "Ocimum forskoelei",
+                "scientificNameAuthorship": "Benth.",
+                "genus": {
+                    "scientificNameWithoutAuthor": "Ocimum",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Ocimum"
+                },
+                "family": {
+                    "scientificNameWithoutAuthor": "Lamiaceae",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Lamiaceae"
+                },
+                "commonNames": [],
+                "scientificName": "Ocimum forskoelei Benth."
+            },
+            "gbif": {
+                "id": "7710400"
+            },
+            "powo": {
+                "id": "452956-1"
+            }
+        },
+        {
+            "score": 0.0016,
+            "species": {
+                "scientificNameWithoutAuthor": "Mosla scabra",
+                "scientificNameAuthorship": "(Thunb.) C.Y.Wu & H.W.Li",
+                "genus": {
+                    "scientificNameWithoutAuthor": "Mosla",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Mosla"
+                },
+                "family": {
+                    "scientificNameWithoutAuthor": "Lamiaceae",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Lamiaceae"
+                },
+                "commonNames": [
+                    "Purplish field mosla"
+                ],
+                "scientificName": "Mosla scabra (Thunb.) C.Y.Wu & H.W.Li"
+            },
+            "gbif": {
+                "id": "8356260"
+            },
+            "powo": {
+                "id": "452218-1"
+            }
+        },
+        {
+            "score": 0.0015,
+            "species": {
+                "scientificNameWithoutAuthor": "Ocimum americanum",
+                "scientificNameAuthorship": "L.",
+                "genus": {
+                    "scientificNameWithoutAuthor": "Ocimum",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Ocimum"
+                },
+                "family": {
+                    "scientificNameWithoutAuthor": "Lamiaceae",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Lamiaceae"
+                },
+                "commonNames": [
+                    "Sweet Basil",
+                    "American basil",
+                    "Hoary basil"
+                ],
+                "scientificName": "Ocimum americanum L."
+            },
+            "gbif": {
+                "id": "2927097"
+            },
+            "powo": {
+                "id": "316218-2"
+            }
+        },
+        {
+            "score": 0.00136,
+            "species": {
+                "scientificNameWithoutAuthor": "Ocimum campechianum",
+                "scientificNameAuthorship": "Mill.",
+                "genus": {
+                    "scientificNameWithoutAuthor": "Ocimum",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Ocimum"
+                },
+                "family": {
+                    "scientificNameWithoutAuthor": "Lamiaceae",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Lamiaceae"
+                },
+                "commonNames": [
+                    "Least basil",
+                    "Basil",
+                    "Mosquito Basil"
+                ],
+                "scientificName": "Ocimum campechianum Mill."
+            },
+            "gbif": {
+                "id": "2927098"
+            },
+            "powo": {
+                "id": "452886-1"
+            }
+        },
+        {
+            "score": 0.00104,
+            "species": {
+                "scientificNameWithoutAuthor": "Ocimum kilimandscharicum",
+                "scientificNameAuthorship": "Gürke",
+                "genus": {
+                    "scientificNameWithoutAuthor": "Ocimum",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Ocimum"
+                },
+                "family": {
+                    "scientificNameWithoutAuthor": "Lamiaceae",
+                    "scientificNameAuthorship": "",
+                    "scientificName": "Lamiaceae"
+                },
+                "commonNames": [
+                    "Hoary basil",
+                    "Camphor basil",
+                    "Thai Basil"
+                ],
+                "scientificName": "Ocimum kilimandscharicum Gürke"
+            },
+            "gbif": {
+                "id": "8344835"
+            },
+            "powo": {
+                "id": "453005-1"
+            }
+        }
+    ],
+    "version": "2026-03-20 (7.4)",
+    "remainingIdentificationRequests": 498
+}

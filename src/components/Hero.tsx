@@ -339,7 +339,7 @@ const Hero = () => {
       const formData = new FormData();
       formData.append("image", file);
 
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const apiUrl = import.meta.env.VITE_API_URL || '';
       const res = await fetch(`${apiUrl}/api/scan`, {
         method: "POST",
         body: formData,
@@ -397,6 +397,20 @@ const Hero = () => {
 
   const handleExploreTherapies = () => {
     const element = document.querySelector('#therapies');
+    if (element) {
+      const navHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleExplorePlants = () => {
+    const element = document.querySelector('#plants');
     if (element) {
       const navHeight = 80;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
@@ -525,7 +539,11 @@ const Hero = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-primary-foreground font-semibold rounded-full px-8 h-12 shadow-glow transition-transform hover:-translate-y-1">
+                <Button 
+                  size="lg" 
+                  onClick={handleExplorePlants}
+                  className="bg-accent hover:bg-accent/90 text-primary-foreground font-semibold rounded-full px-8 h-12 shadow-glow transition-transform hover:-translate-y-1"
+                >
                   Start Exploring
                 </Button>
                 <Button

@@ -15,8 +15,11 @@ import {
   Star,
   Bookmark,
   ArrowRight,
-  Camera
+  Camera,
+  CheckCircle,
+  X
 } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // Import plant images
 // Import plant images
@@ -300,6 +303,8 @@ const PlantExplorer = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const [bookmarkedPlants, setBookmarkedPlants] = useState<string[]>([]);
+  const [selectedPlant, setSelectedPlant] = useState<Plant | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
     const handleSearchUpdate = () => {
@@ -357,6 +362,11 @@ const PlantExplorer = () => {
       case 'kapha': return 'text-ayush-kapha border-ayush-kapha/30 bg-ayush-kapha/10';
       default: return 'text-primary border-primary/30 bg-primary/10';
     }
+  };
+
+  const handleReadMore = (plant: Plant) => {
+    setSelectedPlant(plant);
+    setShowDetails(true);
   };
 
   return (
@@ -503,10 +513,30 @@ const PlantExplorer = () => {
                       </div>
 
                       <div className="grid grid-cols-2 gap-3 pt-4 border-t border-border/50">
-                        <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl shadow-md group-hover:shadow-glow transition-all">
+                        <Button 
+                          onClick={() => handleReadMore(plant)}
+                          className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl shadow-md group-hover:shadow-glow transition-all"
+                        >
                           Read More
                         </Button>
-                        <Button variant="outline" className="w-full border-primary/20 hover:bg-primary/5 text-primary rounded-xl">
+                        <Button 
+                          variant="outline" 
+                          onClick={() => {
+                            sessionStorage.setItem('therapyPlantFilter', plant.name);
+                            window.dispatchEvent(new Event('therapyFilterUpdate'));
+                            const element = document.querySelector('#therapies');
+                            if (element) {
+                              const navHeight = 80;
+                              const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                              const offsetPosition = elementPosition - navHeight;
+                              window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                              });
+                            }
+                          }}
+                          className="w-full border-primary/20 hover:bg-primary/5 text-primary rounded-xl"
+                        >
                           <Brain className="w-4 h-4 mr-2" />
                           Therapy
                         </Button>
@@ -544,6 +574,106 @@ const PlantExplorer = () => {
           </div>
         </div>
       </div>
+
+      {/* Plant Details Dialog */}
+      <Dialog open={showDetails} onOpenChange={setShowDetails}>
+        <DialogContent className="sm:max-w-3xl p-0 overflow-hidden bg-white/95 backdrop-blur-xl border-none shadow-deep rounded-2xl">
+          {selectedPlant && (
+            <div className="grid md:grid-cols-2 h-full max-h-[90vh]">
+              {/* Image Side */}
+              <div className="relative bg-secondary/30 h-64 md:h-auto">
+                <img
+                  src={selectedPlant.image}
+                  alt={selectedPlant.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <div>
+                    <h2 className="text-3xl font-bold text-white font-serif">{selectedPlant.name}</h2>
+                    <p className="text-white/90 italic">{selectedPlant.scientificName}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content Side */}
+              <div className="p-8 overflow-y-auto custom-scrollbar">
+                <DialogHeader className="mb-6 text-left">
+                  <DialogTitle className="sr-only">Plant Details</DialogTitle>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-bold tracking-wider text-muted-foreground uppercase">Sanskrit Name</span>
+                    <Badge variant="outline" className={`${getDoshaColor(selectedPlant.dosha)} capitalize`}>
+                      {selectedPlant.dosha} Balancing
+                    </Badge>
+                  </div>
+                  <p className="text-2xl font-serif text-primary">{selectedPlant.sanskrit}</p>
+                </DialogHeader>
+
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-2 text-foreground">
+                      <Leaf className="w-4 h-4 text-primary" /> Description
+                    </h4>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {selectedPlant.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold mb-3 text-foreground">Therapeutic Properties</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedPlant.properties.map((property, index) => (
+                        <Badge key={index} variant="secondary" className="bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                          {property}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4 bg-muted/30 p-4 rounded-xl">
+                    <div>
+                      <span className="text-xs font-semibold text-muted-foreground uppercase">Rasa (Taste)</span>
+                      <div className="flex flex-wrap gap-1 mt-2">
+                        {selectedPlant.rasa.map((r, i) => (
+                          <span key={i} className="text-sm font-medium text-foreground">{r}{i < selectedPlant.rasa.length - 1 ? ',' : ''}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-muted-foreground uppercase">Virya (Potency)</span>
+                      <div className="mt-2 text-sm font-medium capitalize text-foreground">
+                        {selectedPlant.virya}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold mb-3 text-foreground">Key Benefits</h4>
+                    <ul className="space-y-2">
+                      {selectedPlant.benefits.map((benefit, index) => (
+                        <li key={index} className="flex items-start space-x-2 text-sm text-foreground/80">
+                          <CheckCircle className="w-4 h-4 text-primary/70 shrink-0 mt-0.5" />
+                          <span>{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border">
+                    <div>
+                      <span className="text-xs font-semibold text-muted-foreground uppercase">Difficulty</span>
+                      <p className="mt-1 text-sm font-medium capitalize text-foreground">{selectedPlant.difficulty}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-muted-foreground uppercase">Best Season</span>
+                      <p className="mt-1 text-sm font-medium text-foreground">{selectedPlant.season.join(", ")}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

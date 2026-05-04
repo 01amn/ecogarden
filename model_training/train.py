@@ -87,7 +87,7 @@ def train_model():
     target_model_path = os.path.join(model_dir, "plant_model.h5")
     
     checkpoint = ModelCheckpoint(target_model_path, monitor='val_accuracy', save_best_only=True, mode='max', verbose=1)
-    early_stop = EarlyStopping(monitor='val_accuracy', patience=5, restore_best_weights=True)
+    early_stop = EarlyStopping(monitor='val_accuracy', patience=10, restore_best_weights=True)
 
     # Compute class weights to handle imbalanced dataset
     import numpy as np
@@ -103,7 +103,7 @@ def train_model():
     print("Starting training...")
     history = model.fit(
         train_data,
-        epochs=20,
+        epochs=50,
         validation_data=valid_data,
         callbacks=[checkpoint, early_stop],
         class_weight=class_weight_dict
